@@ -1,0 +1,115 @@
+{
+  "name": "cretueusebiu/laravel-vue-spa",
+  "description": "A Laravel-Vue SPA starter project template.",
+  "keywords": [
+    "spa",
+    "laravel",
+    "vue"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": "^8.0.2",
+    "akaunting/laravel-money": "^3.1",
+    "arcanedev/laravel-settings": "^9.0",
+    "barryvdh/laravel-dompdf": "^1.0",
+    "cviebrock/eloquent-sluggable": "^9.0",
+    "florianv/laravel-swap": "^2.3",
+    "guzzlehttp/guzzle": "^7.5",
+    "intervention/image": "^2.7",
+    "jackiedo/dotenv-editor": "^2.0",
+    "laravel-notification-channels/twilio": "^3.3",
+    "laravel/framework": "^9.36",
+    "laravel/sanctum": "^2.15",
+    "laravel/socialite": "^5.5",
+    "laravel/telescope": "^4.9",
+    "laravel/tinker": "^2.7",
+    "laravel/ui": "^3.4",
+    "maatwebsite/excel": "^3.1",
+    "mews/purifier": "^3.3",
+    "nyholm/psr7": "^1.8",
+    "php-http/curl-client": "^2.3",
+    "php-http/message": "^1.16",
+    "propaganistas/laravel-phone": "^5.0",
+    "pusher/pusher-php-server": "^7.2",
+    "rachidlaasri/laravel-installer": "dev-master",
+    "razorpay/razorpay": "^2.9",
+    "spatie/db-dumper": "^3.3",
+    "spatie/laravel-activitylog": "^4.7",
+    "spatie/laravel-medialibrary": "10.2.*",
+    "spatie/simple-excel": "^2.3",
+    "srmklive/paypal": "^3.0",
+    "stancl/tenancy": "^3.6",
+    "stripe/stripe-php": "^10.17",
+    "unicodeveloper/laravel-paystack": "^1.2"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.7",
+    "fakerphp/faker": "^1.20",
+    "laravel-shift/blueprint": "^2.4",
+    "laravel/dusk": "^6.25",
+    "laravel/pint": "^1.2",
+    "laravel/sail": "^1.16",
+    "mockery/mockery": "^1.5",
+    "nunomaduro/collision": "^6.3",
+    "phpunit/phpunit": "^9.5",
+    "spatie/laravel-ignition": "^1.5"
+  },
+  "repositories": {
+    "rachidlaasri/laravel-installer": {
+      "type": "vcs",
+      "url": "git@github.com:Codeshaper-bd/laravel-installer.git"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "platform": {
+      "php": "8.0.2"
+    },
+    "allow-plugins": {
+      "php-http/discovery": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+        "laravel/dusk"
+      ]
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    },
+    "files": [
+      "app/Helpers/helpers.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "scripts": {
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate --ansi"
+    ],
+    "post-update-cmd": [
+      "Illuminate\\Foundation\\ComposerScripts::postUpdate"
+    ]
+  }
+}

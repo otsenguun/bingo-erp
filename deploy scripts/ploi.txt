@@ -1,0 +1,28 @@
+cd /home/ploi/acculance.top
+git reset --hard
+git pull origin main
+
+composer install --no-interaction --prefer-dist --optimize-autoloader
+echo "" | sudo -S service php8.0-fpm reload
+
+php artisan route:cache
+php artisan view:clear
+php artisan migrate:fresh --seed --force
+# php artisan telescope:prune
+php artisan storage:link
+
+echo "Backend complete!"
+
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+nvm install 16
+
+npm i --legacy-peer-deps
+npm run build
+
+echo "Frontend complete!"
+
+echo "🚀 Application deployed!"
